@@ -210,12 +210,29 @@ The general options here are to either remove the custom version of python, or i
 http://answers.ros.org/question/250228/no-module-named-catkin_pkgpackage-error-during-catkin-make/
 
 
+NOTICE: I have been problems with the versions of python that are sourcing the ros build version
+to which I tried the following solutions
+
 FIRST TRIAL: FAIL 
 echo "export PYTHONPATH=/usr/share/doc/python-catkin-pkg:${PYTHONPATH}"  >> ~/.bashrc
 source ~/.bashrc
 
 SECOND TRIAL: COOL :) 
-echo "export PYTHONPATH=/usr/lib/python2.7/dist-packages:${PYTHONPATH}"  >> ~/.bashrc
+echo "export PYTHONPATH=/usr/lib/python2.7/dist-packages:/usr/lib:${PYTHONPATH}"  >> ~/.bashrc
+
+I can use catkin_make but not load numpy
+
+
+THIRD TRIAL: SUPER COOL (fixed the problems of the two path python libraries) 
+
+echo "export PYTHONPATH=/usr/lib/python2.7/site-packages:/usr/local/lib/python2.7/site-packages:/usr/local/lib/python2.7/dist-packages" >> ~/.bashrc
+
+with this one, I can load numpy but not load the bash to run cati_make
+
+https://leemendelowitz.github.io/blog/how-does-python-find-packages.html
+
+
+
 source ~/.bashrc
 
 http://answers.ros.org/question/56873/problem-with-catkin_make/
@@ -224,7 +241,7 @@ http://answers.ros.org/question/56873/problem-with-catkin_make/
 ```
 cd && mkdir -p ~/catkin_ws/src &&  cd ~/catkin_ws/src
 cd ~/catkin_ws/
-catkin_make
+catkin_make -DPYTHON_VERSION=2.7 
 ```
 
 
@@ -235,13 +252,7 @@ To make sure your workspace is properly overlayed by the setup script, make sure
 
 
 ```
-echo "~/catkin_ws/devel/setup.bash"  >> ~/.bashrc
-```
-
-
-
-```
-$ source ~/catkin_ws/devel/setup.bash
+echo "source ~/catkin_ws/devel/setup.bash"  >> ~/.bashrc
 ```
 
 
