@@ -102,7 +102,7 @@ http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment
 Catkin is the official build system for ROS Catkin workspace is a
 folder where you can modify, build and install catkin packages.
 
-Let's create a catkin workspace and Initialise the catkin workspace:
+Let us create a catkin workspace and Initialise the catkin workspace:
 
 ```
 $ mkdir -p ~/catkin_ws/src
@@ -192,10 +192,14 @@ $ source devel/setup.bash
 
 To make sure your workspace is properly overlayed by the setup script,
 make sure ROS_PACKAGE_PATH environment variable includes the directory
-you're in.
+you are in.
 
 ```
 $ echo $ROS_PACKAGE_PATH
 
    >> /home/map479-admin/catkin_ws/src:/opt/ros/indigo/share:/opt/ros/indigo/stacks
 ```
+
+
+
+
