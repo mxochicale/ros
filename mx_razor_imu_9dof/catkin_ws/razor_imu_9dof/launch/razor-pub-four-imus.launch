@@ -1,0 +1,25 @@
+<launch>
+  <arg name="razor_config_file1" default="$(find razor_imu_9dof)/config/razor1.yaml"/>
+  <arg name="razor_config_file2" default="$(find razor_imu_9dof)/config/razor2.yaml"/>
+  <arg name="razor_config_file3" default="$(find razor_imu_9dof)/config/razor3.yaml"/>
+  <arg name="razor_config_file4" default="$(find razor_imu_9dof)/config/razor4.yaml"/>
+
+
+  <node pkg="razor_imu_9dof" type="imu_node.py" name="s01_node" ns="ns01" output="screen">
+    <rosparam file="$(arg razor_config_file1)" command="load"/>
+  </node>
+
+  <node pkg="razor_imu_9dof" type="imu_node.py" name="s02_node" ns="ns02" output="screen">
+    <rosparam file="$(arg razor_config_file2)" command="load"/>
+  </node>
+
+  <node pkg="razor_imu_9dof" type="imu_node.py" name="s03_node" ns="ns03" output="screen">
+    <rosparam file="$(arg razor_config_file3)" command="load"/>
+  </node>
+
+  <node pkg="razor_imu_9dof" type="imu_node.py" name="s04_node" ns="ns04" output="screen">
+    <rosparam file="$(arg razor_config_file4)" command="load"/>
+  </node>
+
+
+</launch>

@@ -1,0 +1,43 @@
+## USB port
+# port: /dev/ttyUSB1
+port: /dev/rfcomm3
+rawdata_filename: s04.csv
+
+#default_data_stream_path: /home/map479-admin/catkin_ws/src/razor_imu_9dof/
+# main_data_stream_path: /home/map479-admin/mxochicale/phd/ros/ros_razor/table_tennis/
+main_data_stream_path: /home/map479-admin/mxochicale/phd/ros/ros_razor/FourRazorsData
+
+
+##### Calibration ####
+### accelerometer
+accel_x_min: -271.65
+accel_x_max: 238.07
+accel_y_min: -249.86
+accel_y_max: 255.45
+accel_z_min: -264.09
+accel_z_max: 228.446
+
+
+### magnetometer
+# standard calibration
+magn_x_min: -600.0
+magn_x_max: 600.0
+magn_y_min: -600.0
+magn_y_max: 600.0
+magn_z_min: -600.0
+magn_z_max: 600.0
+
+# extended calibration
+calibration_magn_use_extended: true
+magn_ellipsoid_center: [8.62950, 97.8913, 34.7287]
+magn_ellipsoid_transform: [[0.904583, -0.00939965, -0.0274138], [-0.00939965, 0.942178, -0.00448517], [-0.0274138, -0.00448517, 0.992068]]
+
+
+
+# AHRS to robot calibration
+imu_yaw_calibration: 0.0
+
+### gyroscope
+gyro_average_offset_x: -33.72
+gyro_average_offset_y: -11.87
+gyro_average_offset_z: -10.55
