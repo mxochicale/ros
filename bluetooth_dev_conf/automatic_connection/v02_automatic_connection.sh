@@ -1,0 +1,47 @@
+!/bin/bash
+#
+#  chmod +x <filename>.sh
+#  Thu Jun 11 15:03:42 BST 2015
+#
+# Miguel P. Xochicale [http://mxochicale.github.io]
+# Doctoral Researcher in Human-Robot Interaction
+# University of Birmingham, U.K. (2014-2018)
+#------------------------------------------------------------
+
+#Configure rfcomm as regular user
+#sudo chmod u+s /usr/bin/rfcomm
+
+echo "-------------------------------"
+echo "release and connect"
+echo "-------------------------------"
+
+####  sudo rfcomm -i hci0 connect 0 00:06:66:71:5C:D4
+####  sudo rfcomm -i hci0 connect 0 00:06:66:71:5A:C6
+## hcitool dev
+#hci0	C4:85:08:21:53:D0
+
+
+#Restart the BT 00:06:66:71:5C:D4 :
+/etc/init.d/bluetooth stop
+/etc/init.d/bluetooth start
+sleep 1
+rfcomm -i C4:85:08:21:53:D0 release 0 00:06:66:71:5C:D4 & rfcomm -i C4:85:08:21:53:D0 release 1 00:06:66:71:5A:C6
+sleep 1
+rfcomm -i C4:85:08:21:53:D0 connect 0 00:06:66:71:5C:D4 & rfcomm -i C4:85:08:21:53:D0 connect 1 00:06:66:71:5A:C6
+
+####PROBLEM
+### Can't create RFCOMM TTY: Address already in use
+
+
+#
+# sleep 1
+# rfcomm -i C4:85:08:21:53:D0 release 1 00:06:66:71:5A:C6 & rfcomm -i C4:85:08:21:53:D0 release 2 00:06:66:71:5C:DA
+# sleep 1
+# rfcomm -i C4:85:08:21:53:D0 connect 1 00:06:66:71:5A:C6 & rfcomm -i C4:85:08:21:53:D0 connect 2 00:06:66:71:5C:DA
+
+
+
+#
+# echo "-------------------------------"
+# echo "rfcomm released"
+# echo "-------------------------------"
