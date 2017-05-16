@@ -1,4 +1,10 @@
-!/bin/bash
+#!/bin/bash   
+###(ubuntu 16.04)
+
+
+##!/bin/bash #(ubuntu 14.04)
+
+#
 #
 #  chmod +x <filename>.sh
 #  Thu Jun 11 15:03:42 BST 2015
@@ -16,7 +22,7 @@ echo "release and connect"
 echo "-------------------------------"
 
 ## hcitool dev
-#  hci0	C4:85:08:21:53:D0
+#  hci0	00:1A:7D:DA:71:11 
 
 # #### "BlueSMiRF Silver"; Dongles Modules @ sudo vim /etc/bluetooth/rfcomm.conf
 # rfcomm0 device 00:06:66:71:5C:D4;
@@ -31,10 +37,28 @@ echo "-------------------------------"
 
 
 
+#sleep 1
+#rfcomm -i 00:1A:7D:DA:71:11 release 0 00:06:66:71:5C:D4	
+#sleep 1
+#rfcomm -i 00:1A:7D:DA:71:11 connect 0 00:06:66:71:5C:D4	
+
+#sleep 1
+#rfcomm -i 00:1A:7D:DA:71:11 release 1 00:06:66:71:5A:C6
+#sleep 1
+#rfcomm -i 00:1A:7D:DA:71:11 connect 1 00:06:66:71:5A:C6
+
+
+#sleep 1
+#rfcomm -i 00:1A:7D:DA:71:11 release 2 00:06:66:71:5C:DA
+#sleep 1
+#rfcomm -i 00:1A:7D:DA:71:11 connect 2 00:06:66:71:5C:DA
+
+
 sleep 1
-rfcomm -i 00:1A:7D:DA:71:11 release 0
+rfcomm -i 00:1A:7D:DA:71:11 release 3 00:06:66:71:5B:FF
 sleep 1
-rfcomm -i 00:1A:7D:DA:71:11 connect 0 
+rfcomm -i 00:1A:7D:DA:71:11 connect 3 00:06:66:71:5B:FF
+
 
 
 

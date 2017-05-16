@@ -15,11 +15,19 @@ Devices:
 ```
 sudo cp rfcomm.conf /etc/bluetooth/
 ```
+If it is connected for the first time, then you have to configure rfcomm as regular user with  
+sudo chmod u+s /usr/bin/rfcomm
 
 * go to ~/automatic_connections 
-In case of password verification for the first time, type: 0000 
+In case of password verification for the first time, type: 0000
+
 ```
-./automatic_connection.sh
+./one_automatic_connection.sh
+```
+
+ 
+```
+./four_automatic_connection.sh
 ```
 
 

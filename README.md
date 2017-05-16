@@ -1,7 +1,8 @@
 ROS
 ---
 
+Robot Operating System <http://www.ros.org/>
 
 
-* packages
-  * [razor_imu_9dofs](http://wiki.ros.org/razor_imu_9dofs)
+
+
