@@ -35,13 +35,22 @@ echo "-------------------------------"
 #/etc/init.d/bluetooth stop
 #/etc/init.d/bluetooth start
 
-
 ###########
 ## rfcomm0
-sleep 1
-rfcomm -i 00:1A:7D:DA:71:11 release 0 00:06:66:71:5C:D4
-sleep 1
+# sleep 1
+# rfcomm -i 00:1A:7D:DA:71:11 release 0 00:06:66:71:5C:D4
+# sleep 1
+rfcomm -i 00:1A:7D:DA:71:11 bind 0 00:06:66:71:5C:D4
+sleep 10
 rfcomm -i 00:1A:7D:DA:71:11 connect 0 00:06:66:71:5C:D4
+
+# ## ADDING SUDO
+# ###########
+# ## rfcomm0
+# sleep 1
+# sudo rfcomm -i 00:1A:7D:DA:71:11 release 0 00:06:66:71:5C:D4
+# sleep 1
+# sudo rfcomm -i 00:1A:7D:DA:71:11 connect 0 00:06:66:71:5C:D4
 
 
 ###########
