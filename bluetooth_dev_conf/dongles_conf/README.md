@@ -75,6 +75,21 @@ $ sudo miniterm.py /dev/rfcomm0 115200
 
 
 
+# On Ubuntu 14.04 
+
+
+```
+$ miniterm.py /dev/rfcomm0 115200
+could not open port '/dev/rfcomm0': could not open port /dev/rfcomm0: [Errno 16] Device or resource busy: '/dev/rfcomm0'
+```
+
+
+```
+$ miniterm.py /dev/rfcomm0 115200
+--- Miniterm on /dev/rfcomm0: 115200,8,N,1 ---
+--- Quit: Ctrl+]  |  Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---
+
+```
 
 
 

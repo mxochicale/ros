@@ -3,8 +3,11 @@ Testing razor with pySerial
 
 
 # Ubuntu 14.04 x64
+connect the device with: "~/mxochicale/github/ros/bluetooth_dev_conf/automatic_connection$ ./one_automatic_connection.sh"
+
 ```
 $ ls -l /dev/rfcomm*
+crw-rw---- 1 root dialout 216, 0 May 24 15:21 /dev/rfcomm0
 ```
 
 # Ubuntu 16.04 x64
