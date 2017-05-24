@@ -42,11 +42,11 @@ gpg: requesting key B01FA116 from hkp server ha.pool.sks-keyservers.net
 gpg: key B01FA116: "ROS Builder <rosbuild@ros.org>" not changed
 gpg: Total number processed: 1
 gpg:              unchanged: 1
- 
+
 ```
 
-1.4 Installation 
- 
+1.4 Installation
+
 ```
 sudo apt-get update
 sudo apt-get install ros-indigo-desktop-full
@@ -68,7 +68,7 @@ The following NEW packages will be installed
 0 to upgrade, 10 to newly install, 1 to remove and 184 not to upgrade.
 Need to get 40.5 MB of archives.
 After this operation, 76.2 MB of additional disk space will be used.
-Do you want to continue? [Y/n] 
+Do you want to continue? [Y/n]
 ```
 
 
@@ -104,7 +104,7 @@ echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-* 1.7 Getting rosinstall 
+* 1.7 Getting rosinstall
 
 
 
@@ -117,7 +117,7 @@ sudo apt-get install python-catkin-pkg
 ```
 
 
-* TESTING ROS 
+* TESTING ROS
 
 ```
 $rosversion -d
@@ -213,17 +213,17 @@ http://answers.ros.org/question/250228/no-module-named-catkin_pkgpackage-error-d
 NOTICE: I have been problems with the versions of python that are sourcing the ros build version
 to which I tried the following solutions
 
-FIRST TRIAL: FAIL 
+FIRST TRIAL: FAIL
 echo "export PYTHONPATH=/usr/share/doc/python-catkin-pkg:${PYTHONPATH}"  >> ~/.bashrc
 source ~/.bashrc
 
-SECOND TRIAL: COOL :) 
+SECOND TRIAL: COOL :)
 echo "export PYTHONPATH=/usr/lib/python2.7/dist-packages:/usr/lib:${PYTHONPATH}"  >> ~/.bashrc
 
 I can use catkin_make but not load numpy
 
 
-THIRD TRIAL: SUPER COOL (fixed the problems of the two path python libraries) 
+THIRD TRIAL: SUPER COOL (fixed the problems of the two path python libraries)
 
 echo "export PYTHONPATH=/usr/lib/python2.7/site-packages:/usr/local/lib/python2.7/site-packages:/usr/local/lib/python2.7/dist-packages" >> ~/.bashrc
 
@@ -241,12 +241,12 @@ http://answers.ros.org/question/56873/problem-with-catkin_make/
 ```
 cd && mkdir -p ~/catkin_ws/src &&  cd ~/catkin_ws/src
 cd ~/catkin_ws/
-catkin_make -DPYTHON_VERSION=2.7 
+catkin_make -DPYTHON_VERSION=2.7
 ```
 
 
 
-To make sure your workspace is properly overlayed by the setup script, make sure ROS_PACKAGE_PATH environment variable includes the directory you are in. 
+To make sure your workspace is properly overlayed by the setup script, make sure ROS_PACKAGE_PATH environment variable includes the directory you are in.
 
 
 
@@ -254,22 +254,3 @@ To make sure your workspace is properly overlayed by the setup script, make sure
 ```
 echo "source ~/catkin_ws/devel/setup.bash"  >> ~/.bashrc
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

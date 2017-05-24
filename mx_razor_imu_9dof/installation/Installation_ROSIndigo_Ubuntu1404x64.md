@@ -5,13 +5,13 @@ razor_imu_9dof
 http://wiki.ros.org/razor_imu_9dof
 
 
-# INSTALLATION 
+# INSTALLATION
 
 
 sudo apt-get install python-pip  
-sudo -H pip install numpy 
+sudo -H pip install numpy
 sudo apt-get install python-visual
-exit from sudo 
+exit from sudo
 
 
 ```
@@ -106,28 +106,28 @@ Wrote header file in /home/map479-admin/catkin_ws/devel/include/razor_imu_9dof/i
 
 
 
-# USAGE 
+# USAGE
 
 
 
-configuratrion 
+configuratrion
 
 
 roscd razor_imu_9dof/config/
 cp razor.yaml my_razor.yaml
 vim my_razor.yaml
-port: /dev/rfcomm0 
+port: /dev/rfcomm0
 
 
 
 
 
-$ roslaunch razor_imu_9dof razor-pub.launch 
+$ roslaunch razor_imu_9dof razor-pub.launch
 
 ```
 $ roslaunch razor_imu_9dof razor-pub
 razor-pub-and-display.launch  razor-pub-diags.launch        razor-pub.launch
-map479-admin@eee320:~/catkin_ws/src/razor_imu_9dof/config$ roslaunch razor_imu_9dof razor-pub.launch 
+map479-admin@eee320:~/catkin_ws/src/razor_imu_9dof/config$ roslaunch razor_imu_9dof razor-pub.launch
 ... logging to /home/map479-admin/.ros/log/701b5470-3992-11e7-9728-7071bc6b0ac5/roslaunch-eee320-18983.log
 Checking log directory for disk usage. This may take awhile.
 Press Ctrl-C to interrupt

@@ -9,7 +9,7 @@ wget https://raw.githubusercontent.com/pyserial/pyserial/master/serial/tools/min
 chmod +x miniterm.py
 ```
 
-# Changing Baudrate 
+# Changing Baudrate
 
 [ref](https://github.com/mxochicale/decimus/tree/master/bluetooth#setting-up-the-bluesmirfs-baudrate)
 
@@ -51,6 +51,41 @@ Scanning ...
 
 
 ```
+cd ~/automatic_connections
+```
+
+```
+$ ./one_automatic_connection.sh
+-------------------------------
+release and connect
+-------------------------------
+Can't release device: No such device
+Connected /dev/rfcomm0 to 00:06:66:71:5C:D4 on channel 1
+Press CTRL-C for hangup
+```
+
+```
+$ sudo miniterm.py /dev/rfcomm0 115200
+
+#o1  to start streaming data  
+#o0  to stop streaming data
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
 $bluetoothctl
 [NEW] Controller 00:1A:7D:DA:71:11 map479-W2600CR [default]
 [bluetooth]# power on
@@ -68,8 +103,8 @@ Discovery started
 [CHG] Controller 00:1A:7D:DA:71:11 Discovering: yes
 [NEW] Device 00:06:66:71:5C:D4 RNBT-5CD4
 [NEW] Device C0:89:EE:E6:A4:4D MI Band 2
-[bluetooth]# pair 00:06:66:71:5C:D4 
-[bluetooth]# pair 00:06:66:71:5C:D4 
+[bluetooth]# pair 00:06:66:71:5C:D4
+[bluetooth]# pair 00:06:66:71:5C:D4
 Attempting to pair with 00:06:66:71:5C:D4
 [CHG] Device 00:06:66:71:5C:D4 Connected: yes
 Request PIN code
@@ -87,14 +122,3 @@ Agent unregistered
 ```
 
 https://www.raspberrypi.org/forums/viewtopic.php?f=28&t=125922
-
-
-
-
-
-
-
-
-
-
-

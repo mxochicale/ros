@@ -12,8 +12,8 @@
 #    xterm -e "$i" &
 #done
 
-#xterm -e rfcomm -i 00:1A:7D:DA:71:11 connect 0 00:06:66:71:5C:D4  
-#xterm -e rfcomm -i 00:1A:7D:DA:71:11 connect 1 00:06:66:71:5A:C6 
+#xterm -e rfcomm -i 00:1A:7D:DA:71:11 connect 0 00:06:66:71:5C:D4
+#xterm -e rfcomm -i 00:1A:7D:DA:71:11 connect 1 00:06:66:71:5A:C6
 
 #xterm -e bash -c 'rfcomm -i 00:1A:7D:DA:71:11 connect 2 00:06:66:71:5C:DA && rfcomm -i 00:1A:7D:DA:71:11 connect 3 00:06:66:71:5B:FF'
 #xterm -e bash -c 'sleep 2 && sleep 2'
@@ -21,11 +21,15 @@
 
 
 
+## hcitool dev
+#  hci0	00:1A:7D:DA:71:11
+
+
 
 rfcomm -i 00:1A:7D:DA:71:11 release 0 00:06:66:71:5C:D4 && rfcomm -i 00:1A:7D:DA:71:11 release 1 00:06:66:71:5A:C6 && rfcomm -i 00:1A:7D:DA:71:11 release 2 00:06:66:71:5C:DA && rfcomm -i 00:1A:7D:DA:71:11 release 3 00:06:66:71:5B:FF
 
-xterm -e bash -c 'rfcomm -i 00:1A:7D:DA:71:11 connect 0 00:06:66:71:5C:D4; bash' & 
-xterm -e bash -c 'rfcomm -i 00:1A:7D:DA:71:11 connect 1 00:06:66:71:5A:C6; bash' & 
+xterm -e bash -c 'rfcomm -i 00:1A:7D:DA:71:11 connect 0 00:06:66:71:5C:D4; bash' &
+xterm -e bash -c 'rfcomm -i 00:1A:7D:DA:71:11 connect 1 00:06:66:71:5A:C6; bash' &
 xterm -e bash -c 'rfcomm -i 00:1A:7D:DA:71:11 connect 2 00:06:66:71:5C:DA; bash' &
 xterm -e bash -c 'rfcomm -i 00:1A:7D:DA:71:11 connect 3 00:06:66:71:5B:FF; bash' &
 #http://www.techpository.com/linux-how-to-open-multiple-xterm-windows-while-running-a-command-in-bash/
