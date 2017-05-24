@@ -73,8 +73,7 @@ cd && rm -rf ~/catkin_ws &&  mkdir -p ~/catkin_ws/src &&  cd ~/catkin_ws/src && 
 ```
 cd ~/catkin_ws/src
 git clone https://github.com/KristofRobot/razor_imu_9dof.git
-cd ..
-catkin_make
+cd .. && catkin_make
 ```
 
 
@@ -242,9 +241,13 @@ roscd razor_imu_9dof/config/
 cp razor.yaml my_razor.yaml
 
 comment and add:
-
+gedit my_razor.yaml
+```
+## USB port
 #port: /dev/ttyUSB0
 port: /dev/rfcomm0
+```
+
 
 
 # USAGE

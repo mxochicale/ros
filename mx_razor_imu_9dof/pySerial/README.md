@@ -12,7 +12,7 @@ crw-rw---- 1 root dialout 216, 0 May 24 15:21 /dev/rfcomm0
 
 ```
 sudo lsof /dev/rfcomm0
-[sudo] password for map479-admin: 
+[sudo] password for map479-admin:
 lsof: WARNING: can't stat() fuse.gvfsd-fuse file system /run/user/1001/gvfs
       Output information may be incomplete.
 COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
@@ -25,8 +25,8 @@ rfcomm  2924 root    5r   CHR  216,0      0t0  508 /dev/rfcomm0
 Opening ... /dev/rfcomm0
 error open serial port: could not open port /dev/rfcomm0: [Errno 16] Device or resource busy: '/dev/rfcomm0'
 
-~/mxochicale/github/ros/mx_razor_imu_9dof/pySerial$ sudo ./testing_razor.py 
-[sudo] password for map479-admin: 
+~/mxochicale/github/ros/mx_razor_imu_9dof/pySerial$ sudo ./testing_razor.py
+[sudo] password for map479-admin:
 Opening ... /dev/rfcomm0
 /dev/rfcomm0
 ```
@@ -101,8 +101,8 @@ rfcomm    3218 root    5r   CHR  216,0      0t0  582 /dev/rfcomm0
 sudo systemctl disable ModemManager
 
 ```
-map479@map479-W2600CR:~/mxochicale/github/ros/bluetooth_dev_conf/automatic_connection$ sudo service ModemManager stop
-map479@map479-W2600CR:~/mxochicale/github/ros/bluetooth_dev_conf/automatic_connection$ sudo lsof /dev/rfcomm0
+$ sudo service ModemManager stop
+$ sudo lsof /dev/rfcomm0
 lsof: WARNING: can't stat() fuse.gvfsd-fuse file system /run/user/1000/gvfs
       Output information may be incomplete.
 COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
