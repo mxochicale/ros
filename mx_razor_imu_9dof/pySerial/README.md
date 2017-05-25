@@ -188,5 +188,23 @@ sudo reboot
 ```
 
 
+# pair and unpair
+
+After a while, I found that the rfcomm has to be connected and then disconnected
+to put it to work well. I am not enterely sure about the reason for this.
+
+However, after connecting the rfcomm, it cannot be reconnected again.
+```
+Can't release device: Operation already in progress
+Can't create RFCOMM TTY: Address already in use
+```
+it needs to be investigated the reason and give solutions to this
+
+
+
+
+
+
+
 More References:
 http://answers.ros.org/question/189457/rosrun-as-super-user/#189462
