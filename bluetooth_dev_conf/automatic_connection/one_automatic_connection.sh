@@ -1,7 +1,6 @@
 #!/bin/bash
 ###(ubuntu 16.04)
 
-
 ##!/bin/bash #(ubuntu 14.04)
 
 #
@@ -14,6 +13,14 @@
 # University of Birmingham, U.K. (2014-2018)
 #------------------------------------------------------------
 
+##$ hcitool dev
+#  hci0	00:1A:7D:DA:71:11
+
+##$ hcitool scan
+#	00:06:66:71:5C:D4	n/a
+
+
+
 #Configure rfcomm as regular user
 #sudo chmod u+s /usr/bin/rfcomm
 
@@ -21,8 +28,8 @@ echo "-------------------------------"
 echo "release and connect"
 echo "-------------------------------"
 
-## hcitool dev
-#  hci0	00:1A:7D:DA:71:11
+
+
 
 # #### "BlueSMiRF Silver"; Dongles Modules @ sudo vim /etc/bluetooth/rfcomm.conf
 # rfcomm0 device 00:06:66:71:5C:D4;

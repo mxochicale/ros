@@ -5,8 +5,7 @@ razor_imu_9dof in Ubuntu 16.04x64 with ROS /opt/ros/kinetic/setup.bash
 http://wiki.ros.org/razor_imu_9dof
 
 
-# INSTALLATION
-
+# Dependencies
 
 Install Python dependencies to run imu_node.py
 ```
@@ -19,6 +18,7 @@ exit from sudo
 
 
 
+### sudo pip install numpy
 ```
 $ sudo pip install numpy
 [sudo] password for map479:
@@ -32,6 +32,8 @@ Successfully installed numpy-1.12.1
 
 ```
 
+
+### sudo pip install matplotlib
 ```
 map479@map479-W2600CR:~/gazr/build$ sudo pip install matplotlib
 The directory '/home/map479/.cache/pip/http' or its parent directory is not owned by the current user and the cache has been disabled. Please check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
@@ -61,26 +63,103 @@ Installing collected packages: pytz, subprocess32, cycler, python-dateutil, func
 Successfully installed cycler-0.10.0 functools32-3.2.3.post2 matplotlib-2.0.2 python-dateutil-2.6.0 pytz-2017.2 subprocess32-3.2.7
 ```
 
+### sudo pip install rospkg
+
+```
+$ sudo pip install rospkg
+[sudo] password for map479:
+The directory '/home/map479/.cache/pip/http' or its parent directory is not owned by the current user and the cache has been disabled. Please check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
+The directory '/home/map479/.cache/pip' or its parent directory is not owned by the current user and caching wheels has been disabled. check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
+Collecting rospkg
+  Downloading rospkg-1.1.1.tar.gz
+Collecting PyYAML (from rospkg)
+  Downloading PyYAML-3.12.tar.gz (253kB)
+    100% |████████████████████████████████| 256kB 2.0MB/s
+Installing collected packages: PyYAML, rospkg
+  Running setup.py install for PyYAML ... done
+  Running setup.py install for rospkg ... done
+Successfully installed PyYAML-3.12 rospkg-1.1.1
+```
 
 
-Remember to install and configurate the ROS Environment
+
+
+
+
+
+
+# ROS razor_imu_9dof.git
+
+
+### Configurate the ROS Environment
 ```
 cd && rm -rf ~/catkin_ws &&  mkdir -p ~/catkin_ws/src &&  cd ~/catkin_ws/src && catkin_init_workspace && cd ~/catkin_ws/ && catkin_make
 ```
+output
+
+```
+Creating symlink "/home/map479/catkin_ws/src/CMakeLists.txt" pointing to "/opt/ros/kinetic/share/catkin/cmake/toplevel.cmake"
+Base path: /home/map479/catkin_ws
+Source space: /home/map479/catkin_ws/src
+Build space: /home/map479/catkin_ws/build
+Devel space: /home/map479/catkin_ws/devel
+Install space: /home/map479/catkin_ws/install
+####
+#### Running command: "cmake /home/map479/catkin_ws/src -DCATKIN_DEVEL_PREFIX=/home/map479/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/map479/catkin_ws/install -G Unix Makefiles" in "/home/map479/catkin_ws/build"
+####
+-- The C compiler identification is GNU 5.4.0
+-- The CXX compiler identification is GNU 5.4.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Using CATKIN_DEVEL_PREFIX: /home/map479/catkin_ws/devel
+-- Using CMAKE_PREFIX_PATH: /home/map479/catkin_ws/devel;/opt/ros/kinetic
+-- This workspace overlays: /home/map479/catkin_ws/devel;/opt/ros/kinetic
+-- Found PythonInterp: /usr/local/bin/python (found version "2.7.13")
+-- Using PYTHON_EXECUTABLE: /usr/local/bin/python
+-- Using Debian Python package layout
+-- Using empy: /usr/bin/empy
+-- Using CATKIN_ENABLE_TESTING: ON
+-- Call enable_testing()
+-- Using CATKIN_TEST_RESULTS_DIR: /home/map479/catkin_ws/build/test_results
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Looking for pthread_create
+-- Looking for pthread_create - not found
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Found gtest sources under '/usr/src/gtest': gtests will be built
+-- Using Python nosetests: /usr/bin/nosetests-2.7
+-- catkin 0.7.6
+-- BUILD_SHARED_LIBS is on
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/map479/catkin_ws/build
+####
+#### Running command: "make -j8 -l8" in "/home/map479/catkin_ws/build"
+####
+```
 
 
-
+### Clone github.com/KristofRobot/razor_imu_9dof.git
 ```
 cd ~/catkin_ws/src
 git clone https://github.com/KristofRobot/razor_imu_9dof.git
-cd .. && catkin_make
 ```
-
-
-
-
+OUTPUT
 ```
-$ cd ~/catkin_ws/src
 map479@map479-W2600CR:~/catkin_ws/src$ git clone https://github.com/KristofRobot/razor_imu_9dof.git
 Cloning into 'razor_imu_9dof'...
 remote: Counting objects: 753, done.
@@ -95,13 +174,11 @@ Checking connectivity... done.
 
 
 ```
-map479@map479-W2600CR:~/catkin_ws/src$ cd ..
+cd .. && catkin_make
 ```
-
-
-
+OUTPUT
 ```
-map479@map479-W2600CR:~/catkin_ws$ catkin_make
+map479@map479-W2600CR:~/catkin_ws/src$ cd .. && catkin_make
 Base path: /home/map479/catkin_ws
 Source space: /home/map479/catkin_ws/src
 Build space: /home/map479/catkin_ws/build
@@ -111,8 +188,8 @@ Install space: /home/map479/catkin_ws/install
 #### Running command: "cmake /home/map479/catkin_ws/src -DCATKIN_DEVEL_PREFIX=/home/map479/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/map479/catkin_ws/install -G Unix Makefiles" in "/home/map479/catkin_ws/build"
 ####
 -- Using CATKIN_DEVEL_PREFIX: /home/map479/catkin_ws/devel
--- Using CMAKE_PREFIX_PATH: /opt/ros/kinetic
--- This workspace overlays: /opt/ros/kinetic
+-- Using CMAKE_PREFIX_PATH: /home/map479/catkin_ws/devel;/opt/ros/kinetic
+-- This workspace overlays: /home/map479/catkin_ws/devel;/opt/ros/kinetic
 -- Using PYTHON_EXECUTABLE: /usr/local/bin/python
 -- Using Debian Python package layout
 -- Using empy: /usr/bin/empy
@@ -135,6 +212,8 @@ CMake Warning at /opt/ros/kinetic/share/catkin/cmake/catkin_package.cmake:166 (m
 Call Stack (most recent call first):
   /opt/ros/kinetic/share/catkin/cmake/catkin_package.cmake:102 (_catkin_package)
   razor_imu_9dof/CMakeLists.txt:8 (catkin_package)
+
+
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/map479/catkin_ws/build
@@ -142,77 +221,6 @@ Call Stack (most recent call first):
 #### Running command: "make -j8 -l8" in "/home/map479/catkin_ws/build"
 ####
 Scanning dependencies of target razor_imu_9dof_gencfg
-[100%] Generating dynamic reconfigure files from cfg/imu.cfg: /home/map479/catkin_ws/devel/include/razor_imu_9dof/imuConfig.h /home/map479/catkin_ws/devel/lib/python2.7/dist-packages/razor_imu_9dof/cfg/imuConfig.py
-Traceback (most recent call last):
-  File "/home/map479/catkin_ws/src/razor_imu_9dof/cfg/imu.cfg", line 4, in <module>
-    from dynamic_reconfigure.parameter_generator_catkin import *
-  File "/opt/ros/kinetic/lib/python2.7/dist-packages/dynamic_reconfigure/__init__.py", line 38, in <module>
-    import roslib
-  File "/opt/ros/kinetic/lib/python2.7/dist-packages/roslib/__init__.py", line 50, in <module>
-    from roslib.launcher import load_manifest
-  File "/opt/ros/kinetic/lib/python2.7/dist-packages/roslib/launcher.py", line 42, in <module>
-    import rospkg
-ImportError: No module named rospkg
-razor_imu_9dof/CMakeFiles/razor_imu_9dof_gencfg.dir/build.make:63: recipe for target '/home/map479/catkin_ws/devel/include/razor_imu_9dof/imuConfig.h' failed
-make[2]: *** [/home/map479/catkin_ws/devel/include/razor_imu_9dof/imuConfig.h] Error 1
-CMakeFiles/Makefile2:339: recipe for target 'razor_imu_9dof/CMakeFiles/razor_imu_9dof_gencfg.dir/all' failed
-make[1]: *** [razor_imu_9dof/CMakeFiles/razor_imu_9dof_gencfg.dir/all] Error 2
-Makefile:138: recipe for target 'all' failed
-make: *** [all] Error 2
-Invoking "make -j8 -l8" failed
-```
-
-
-```
-sudo apt-get update
-sudo apt-get install python-catkin-pkg
-```
-SAME PROBLEM
-
-
-```
-$ sudo pip install rospkg
-[sudo] password for map479:
-The directory '/home/map479/.cache/pip/http' or its parent directory is not owned by the current user and the cache has been disabled. Please check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
-The directory '/home/map479/.cache/pip' or its parent directory is not owned by the current user and caching wheels has been disabled. check the permissions and owner of that directory. If executing pip with sudo, you may want sudo's -H flag.
-Collecting rospkg
-  Downloading rospkg-1.1.1.tar.gz
-Collecting PyYAML (from rospkg)
-  Downloading PyYAML-3.12.tar.gz (253kB)
-    100% |████████████████████████████████| 256kB 2.0MB/s
-Installing collected packages: PyYAML, rospkg
-  Running setup.py install for PyYAML ... done
-  Running setup.py install for rospkg ... done
-Successfully installed PyYAML-3.12 rospkg-1.1.1
-```
-
-
-```
-$ cd ~/catkin_ws/
-map479@map479-W2600CR:~/catkin_ws$ catkin_make clean
-Base path: /home/map479/catkin_ws
-Source space: /home/map479/catkin_ws/src
-Build space: /home/map479/catkin_ws/build
-Devel space: /home/map479/catkin_ws/devel
-Install space: /home/map479/catkin_ws/install
-####
-#### Running command: "make cmake_check_build_system" in "/home/map479/catkin_ws/build"
-####
-####
-#### Running command: "make clean -j8 -l8" in "/home/map479/catkin_ws/build"
-####
-map479@map479-W2600CR:~/catkin_ws$ catkin_make
-Base path: /home/map479/catkin_ws
-Source space: /home/map479/catkin_ws/src
-Build space: /home/map479/catkin_ws/build
-Devel space: /home/map479/catkin_ws/devel
-Install space: /home/map479/catkin_ws/install
-####
-#### Running command: "make cmake_check_build_system" in "/home/map479/catkin_ws/build"
-####
-####
-#### Running command: "make -j8 -l8" in "/home/map479/catkin_ws/build"
-####
 [100%] Generating dynamic reconfigure files from cfg/imu.cfg: /home/map479/catkin_ws/devel/include/razor_imu_9dof/imuConfig.h /home/map479/catkin_ws/devel/lib/python2.7/dist-packages/razor_imu_9dof/cfg/imuConfig.py
 Generating reconfiguration files for imu in razor_imu_9dof
 Wrote header file in /home/map479/catkin_ws/devel/include/razor_imu_9dof/imuConfig.h
@@ -222,7 +230,12 @@ Wrote header file in /home/map479/catkin_ws/devel/include/razor_imu_9dof/imuConf
 
 
 
-# Configuration
+
+
+
+
+
+# Sourcing Environment.
 
 Sourcing any setup files in ~/catkin_ws/devel/ will overlay your workspace
  on top of your environment.
@@ -236,12 +249,19 @@ echo $ROS_PACKAGE_PATH
 /home/map479/catkin_ws/src:/opt/ros/kinetic/share
 ```
 
-
+```
 roscd razor_imu_9dof/config/
 cp razor.yaml my_razor.yaml
+```
+
+
+
+edit my_razor.yaml
+```
+gedit my_razor.yaml
+```
 
 comment and add:
-gedit my_razor.yaml
 ```
 ## USB port
 #port: /dev/ttyUSB0
@@ -249,18 +269,34 @@ port: /dev/rfcomm0
 ```
 
 
-
 # USAGE
 
 
 connect device with  
 ```
+cd ~/automatic_connections
 ./one_automatic_connection.sh
+
+
+.
+.
+.
+
+-------------------------------
+release and connect
+-------------------------------
+Can't release device: No such device
+Connected /dev/rfcomm0 to 00:06:66:71:5C:D4 on channel 1
+Press CTRL-C for hangup
+
 ```
+
+
 then
 ```
 roslaunch razor_imu_9dof razor-pub.launch
 ```
+
 
 ```
 $ roslaunch razor_imu_9dof razor-pub.launch
@@ -324,3 +360,46 @@ done
 map479@map479-W2600CR:~/mxochicale/github/ros$
 
 ```
+
+### ISSUES
+
+
+connect device with  
+```
+cd ~/automatic_connections
+./one_automatic_connection.sh
+
+.
+.
+.
+
+-------------------------------
+release and connect
+-------------------------------
+Can't release device: No such device
+Connected /dev/rfcomm0 to 00:06:66:71:5C:D4 on channel 1
+Press CTRL-C for hangup
+```
+
+
+then
+```
+roslaunch razor_imu_9dof razor-pub.launch
+```
+
+
+
+NB. if you the IMU is not founded at port /dev/rfcomm0, you can connect and disconnect the bluetooth module
+or turn on/off the bluetooth module.
+
+### SOLUTIONS
+#### A, DON'T WORK
+```
+sudo ./one_automatic_connection.sh
+```
+#### B, working
+When connecting the rfcomm and it is already in use as
+```
+Can't create RFCOMM TTY: Address already in use
+```
+the "roslaunch razor_imu_9dof razor-pub.launch" works well.

@@ -25,7 +25,19 @@ In case of password verification for the first time, type: 0000
 cd ~/automatic_connections
 ./one_automatic_connection.sh
 ```
-or 
+
+
+```
+cd ~/dongles_conf
+$ sudo miniterm.py /dev/rfcomm0 115200
+
+#o1  to start streaming data  
+#o0  to stop streaming data
+```
+
+
+
+or
 
 ```
 ./four_automatic_connection.sh
