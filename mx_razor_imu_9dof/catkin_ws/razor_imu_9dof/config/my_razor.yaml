@@ -3,6 +3,12 @@
 port: /dev/rfcomm0
 
 rawdata_filename: imuONE.csv
+number_of_samples: 2000
+##default_data_stream_path: (dont use a relative path ~/catkin_ws/src/razor_imu_9dof)
+main_data_stream_path: /home/map479/catkin_ws/src/razor_imu_9dof
+
+# main_data_stream_path: /home/map479-admin/mxochicale/phd/ros/ros_razor/table_tennis/
+# main_data_stream_path: /home/map479-admin/mxochicale/phd/ros/ros_razor/FourRazorsData
 
 
 ##### Calibration ####

@@ -272,9 +272,19 @@ port: /dev/rfcomm0
 # USAGE
 
 
-connect device with  
+1. turn on the razor sensor
+
+2. Check if the device is available with
 ```
-cd ~/automatic_connections
+$ hcitool scan
+Scanning ...
+
+	00:06:66:71:5C:D4	RNBT-5CD4
+```
+
+3. connect device with  
+```
+cd ~/mxochicale/github/ros/bluetooth_dev_conf/automatic_connection/
 ./one_automatic_connection.sh
 
 
@@ -291,8 +301,7 @@ Press CTRL-C for hangup
 
 ```
 
-
-then
+4. ROS lauch
 ```
 roslaunch razor_imu_9dof razor-pub.launch
 ```
@@ -361,7 +370,30 @@ map479@map479-W2600CR:~/mxochicale/github/ros$
 
 ```
 
-### ISSUES
+Using ROS
+
+
+```
+$ rostopic echo /imu
+```
+
+Ploting streaming data
+```
+$ rqt_plot /imu/linear_acceleration
+$ rqt_plot /imu/orientation/
+$ rqt_plot /imu/angular_velocity/
+```
+
+```
+$ rqt_plot /imu/orientation/x:y:z:w
+$ rqt_plot /imu/angular_velocity/x:y:z
+$ rqt_plot /imu/linear_acceleration/x:y:z
+```
+
+
+
+
+# ISSUES
 
 
 connect device with  
@@ -381,25 +413,84 @@ Connected /dev/rfcomm0 to 00:06:66:71:5C:D4 on channel 1
 Press CTRL-C for hangup
 ```
 
-
-then
 ```
 roslaunch razor_imu_9dof razor-pub.launch
 ```
 
+OUTPUT
+```
+... logging to /home/map479/.ros/log/1d719a58-51e4-11e7-bb17-001e6756d0aa/roslaunch-map479-W2600CR-3965.log
+Checking log directory for disk usage. This may take awhile.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+
+started roslaunch server http://map479-W2600CR:33830/
+
+SUMMARY
+========
+
+PARAMETERS
+ * /imu_node/accel_x_max: 250.0
+ * /imu_node/accel_x_min: -250.0
+ * /imu_node/accel_y_max: 250.0
+ * /imu_node/accel_y_min: -250.0
+ * /imu_node/accel_z_max: 250.0
+ * /imu_node/accel_z_min: -250.0
+ * /imu_node/calibration_magn_use_extended: False
+ * /imu_node/gyro_average_offset_x: 0.0
+ * /imu_node/gyro_average_offset_y: 0.0
+ * /imu_node/gyro_average_offset_z: 0.0
+ * /imu_node/imu_yaw_calibration: 0.0
+ * /imu_node/magn_ellipsoid_center: [0, 0, 0]
+ * /imu_node/magn_ellipsoid_transform: [[0, 0, 0], [0, 0...
+ * /imu_node/magn_x_max: 600.0
+ * /imu_node/magn_x_min: -600.0
+ * /imu_node/magn_y_max: 600.0
+ * /imu_node/magn_y_min: -600.0
+ * /imu_node/magn_z_max: 600.0
+ * /imu_node/magn_z_min: -600.0
+ * /imu_node/port: /dev/rfcomm0
+ * /rosdistro: kinetic
+ * /rosversion: 1.12.7
+
+NODES
+  /
+    imu_node (razor_imu_9dof/imu_node.py)
+
+auto-starting new master
+process[master]: started with pid [3976]
+ROS_MASTER_URI=http://localhost:11311
+
+setting /run_id to 1d719a58-51e4-11e7-bb17-001e6756d0aa
+process[rosout-1]: started with pid [3989]
+started core service [/rosout]
+process[imu_node-2]: started with pid [4006]
+[INFO] [1497542585.811386]: Reconfigure request for yaw_calibration: 0
+[INFO] [1497542585.813434]: Set imu_yaw_calibration to 0
+[INFO] [1497542585.865979]: Opening /dev/rfcomm0...
+[ERROR] [1497542585.866475]: IMU not found at port /dev/rfcomm0. Did you specify the correct port in the launch file?
+[imu_node-2] process has finished cleanly
+log file: /home/map479/.ros/log/1d719a58-51e4-11e7-bb17-001e6756d0aa/imu_node-2*.log
+```
 
 
-NB. if you the IMU is not founded at port /dev/rfcomm0, you can connect and disconnect the bluetooth module
-or turn on/off the bluetooth module.
+NB. if you got the error of "IMU is not founded at port /dev/rfcomm0",
+you can try to connect and disconnect the bluetooth module or turn on/off the bluetooth module.
 
 ### SOLUTIONS
 #### A, DON'T WORK
 ```
 sudo ./one_automatic_connection.sh
 ```
+
 #### B, working
 When connecting the rfcomm and it is already in use as
 ```
 Can't create RFCOMM TTY: Address already in use
 ```
 the "roslaunch razor_imu_9dof razor-pub.launch" works well.
+
+#### C, working
+binding razor instead of connecting
+"rfcomm -i 00:1A:7D:DA:71:11 bind 0 00:06:66:71:5C:D4"
+HOWEVER, it doesnt work for two bluetooth connections

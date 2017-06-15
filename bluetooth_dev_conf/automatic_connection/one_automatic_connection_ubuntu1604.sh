@@ -46,10 +46,12 @@ echo "-------------------------------"
 ## rfcomm0
 sleep 1
 rfcomm -i 00:1A:7D:DA:71:11 release 0 00:06:66:71:5C:D4
-# sleep 1
-#rfcomm -i 00:1A:7D:DA:71:11 bind 0 00:06:66:71:5C:D4
 sleep 1
-rfcomm -i 00:1A:7D:DA:71:11 connect 0 00:06:66:71:5C:D4
+rfcomm -i 00:1A:7D:DA:71:11 bind 0 00:06:66:71:5C:D4
+# sleep 1
+# rfcomm -i 00:1A:7D:DA:71:11 connect 0 00:06:66:71:5C:D4
+
+
 
 # ## ADDING SUDO
 # ###########

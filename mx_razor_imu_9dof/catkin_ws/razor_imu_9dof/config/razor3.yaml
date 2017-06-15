@@ -2,10 +2,13 @@
 # port: /dev/ttyUSB1
 port: /dev/rfcomm2
 rawdata_filename: s03.csv
+number_of_samples: 2000
+##default_data_stream_path: (dont use a relative path ~/catkin_ws/src/razor_imu_9dof)
+main_data_stream_path: /home/map479/catkin_ws/src/razor_imu_9dof
 
-#default_data_stream_path: /home/map479-admin/catkin_ws/src/razor_imu_9dof/
+
 # main_data_stream_path: /home/map479-admin/mxochicale/phd/ros/ros_razor/table_tennis/
-main_data_stream_path: /home/map479-admin/mxochicale/phd/ros/ros_razor/FourRazorsData
+# main_data_stream_path: /home/map479-admin/mxochicale/phd/ros/ros_razor/FourRazorsData
 
 
 ##### Calibration ####

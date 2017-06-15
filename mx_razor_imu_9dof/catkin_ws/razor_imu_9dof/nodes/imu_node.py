@@ -228,6 +228,11 @@ rospy.loginfo("Publishing IMU data...")
 ### This section of code create a path path with date and time each time that
 ### a the ros package is launched
 
+
+
+default_number_of_samples = 1000
+number_of_samples = rospy.get_param('~number_of_samples', default_number_of_samples)
+
 default_filename = 'raw_imu_data.log'
 rawdata_filename = rospy.get_param('~rawdata_filename', default_filename)
 
@@ -241,10 +246,11 @@ main_data_stream_path = rospy.get_param('~main_data_stream_path', default_script
 # headtail_path = os.path.split(script_dir) # split the main path:  '/home/map479-admin/catkin_ws/src/razor_imu_9dof'    'razor'
 # datastreampath = os.path.join(headtail_path[0], 'datastream_storage') # create datastream path
 
-datastreampath = os.path.join(main_data_stream_path, 'data_path_storage') # create datastream path
+datastreampath = os.path.join(main_data_stream_path, 'data_path_storage') # set datastream path
 
 if not os.path.isdir(datastreampath):
-    os.mkdir(datastreampath)
+    os.makedirs(datastreampath)
+#https://stackoverflow.com/questions/273192/how-can-i-create-a-directory-if-it-does-not-exist
 
 now = datetime.datetime.now()
 timenow = now.strftime('%Y%m%d_%H%M')
@@ -330,7 +336,7 @@ while not rospy.is_shutdown():
 ################################################################################
 ################################################################################
     print seq
-    if (seq > 1250): ## with 30000 samples, data is collected for almost 10 minutes
+    if (seq > number_of_samples): ## with 30000 samples, data is collected for almost 10 minutes
         ser.write('#o0' + chr(13))
         ser.close
         f.close
