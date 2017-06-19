@@ -41,55 +41,6 @@ su,11 for 115200
 ```
 
 
-## On Ubuntu 16.04
-
-```
-$ hcitool scan
-Scanning ...
-	00:06:66:71:5C:D4	RNBT-5CD4
-```
-
-
-```
-cd ~/automatic_connections
-```
-
-```
-$ ./one_automatic_connection.sh
--------------------------------
-release and connect
--------------------------------
-Can't release device: No such device
-Connected /dev/rfcomm0 to 00:06:66:71:5C:D4 on channel 1
-Press CTRL-C for hangup
-```
-
-```
-$ sudo miniterm.py /dev/rfcomm0 115200
-
-#o1  to start streaming data  
-#o0  to stop streaming data
-```
-
-
-
-
-
-# On Ubuntu 14.04 
-
-
-```
-$ miniterm.py /dev/rfcomm0 115200
-could not open port '/dev/rfcomm0': could not open port /dev/rfcomm0: [Errno 16] Device or resource busy: '/dev/rfcomm0'
-```
-
-
-```
-$ miniterm.py /dev/rfcomm0 115200
---- Miniterm on /dev/rfcomm0: 115200,8,N,1 ---
---- Quit: Ctrl+]  |  Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---
-
-```
 
 
 

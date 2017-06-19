@@ -2,6 +2,133 @@ Testing razor with pySerial
 
 
 
+# Ubuntu 16.04 x64
+
+
+## Testing rfcomm0
+
+
+turn on the bluetooth dongle
+```
+$ hcitool scan
+Scanning ...
+	00:06:66:71:5C:D4	RNBT-5CD4   [rfcomm0]
+```
+
+bind
+```
+rfcomm -i 00:1A:7D:DA:71:11 bind 0 00:06:66:71:5C:D4
+```
+
+```
+$ ls -l /dev/rfcomm*
+crw-rw---- 1 root dialout 216, 0 May 24 14:47 /dev/rfcomm0
+```
+
+tesing pySerial
+
+```
+$ cd ~/mxochicale/github/ros/mx_razor_imu_9dof/pySerial/
+```
+
+```
+$ ./testing_razor.py
+Opening ... /dev/rfcomm0
+/dev/rfcomm0
+```
+
+## for rfcomm1 and  rfcomm2
+
+```
+$ hcitool scan
+Scanning ...
+00:06:66:71:5C:D4	RNBT-5CD4 [rfcomm0]
+00:06:66:71:5A:C6	n/a [rfcomm1]
+```
+
+bind rfcomm1 rfcomm2
+```
+rfcomm -i 00:1A:7D:DA:71:11 bind 0 00:06:66:71:5C:D4 && rfcomm -i 00:1A:7D:DA:71:11 bind 1 00:06:66:71:5A:C6
+```
+
+
+
+```
+ls -l /dev/rfcomm*
+crw-rw---- 1 root dialout 216, 0 Jun 19 16:30 /dev/rfcomm0
+crw-rw---- 1 root dialout 216, 1 Jun 19 16:30 /dev/rfcomm1
+```
+
+pySerial
+
+```
+$ cd ~/mxochicale/github/ros/mx_razor_imu_9dof/pySerial/
+```
+
+```
+$ ./testing_razor.py /dev/rfcomm3
+Opening ... /dev/rfcomm3
+/dev/rfcomm3
+```
+
+release rfcomm1 rfcomm2
+```
+rfcomm -i 00:1A:7D:DA:71:11 release 0 00:06:66:71:5C:D4 && rfcomm -i 00:1A:7D:DA:71:11 release 1 00:06:66:71:5A:C6
+```
+
+
+
+
+## for rfcomm1 to  rfcomm4
+
+
+
+```
+$ hcitool scan
+Scanning ...
+
+00:06:66:71:5C:D4	RNBT-5CD4 [rfcomm0]
+00:06:66:71:5A:C6	RNBT-5AC6 [rfcomm1]
+00:06:66:71:5C:DA	RNBT-5CDA [rfcomm2]
+00:06:66:71:5B:FF	RNBT-5BFF [rfcomm3]
+```
+
+bind rfcomm0 to rfcomm3
+```
+rfcomm -i 00:1A:7D:DA:71:11 bind 0 00:06:66:71:5C:D4 && rfcomm -i 00:1A:7D:DA:71:11 bind 1 00:06:66:71:5A:C6 &&
+rfcomm -i 00:1A:7D:DA:71:11 bind 2 00:06:66:71:5C:DA && rfcomm -i 00:1A:7D:DA:71:11 bind 3 00:06:66:71:5B:FF
+```
+
+
+```
+$ ls -l /dev/rfcomm*
+crw-rw---- 1 root dialout 216, 0 Jun 19 16:51 /dev/rfcomm0
+crw-rw---- 1 root dialout 216, 1 Jun 19 16:51 /dev/rfcomm1
+crw-rw---- 1 root dialout 216, 2 Jun 19 16:51 /dev/rfcomm2
+crw-rw---- 1 root dialout 216, 3 Jun 19 16:51 /dev/rfcomm3
+
+```
+
+test pySerial
+
+```
+$ cd ~/mxochicale/github/ros/mx_razor_imu_9dof/pySerial/
+```
+
+```
+$ ./testing_razor.py /dev/rfcomm3
+Opening ... /dev/rfcomm3
+/dev/rfcomm3
+```
+
+release rfcomm0 to rfcomm3
+```
+rfcomm -i 00:1A:7D:DA:71:11 release 0 00:06:66:71:5C:D4 && rfcomm -i 00:1A:7D:DA:71:11 release 1 00:06:66:71:5A:C6 &&
+rfcomm -i 00:1A:7D:DA:71:11 release 2 00:06:66:71:5C:DA && rfcomm -i 00:1A:7D:DA:71:11 release 3 00:06:66:71:5B:FF
+```
+
+
+
 # Ubuntu 14.04 x64
 connect the device with: "~/mxochicale/github/ros/bluetooth_dev_conf/automatic_connection$ ./one_automatic_connection.sh"
 
@@ -33,58 +160,10 @@ Opening ... /dev/rfcomm0
 
 
 
-
-# Ubuntu 16.04 x64
-
+# ISSUES
 
 
-```
-$ hcitool scan
-Scanning ...
-	00:06:66:71:5C:D4	RNBT-5CD4
-```
-
-
-```
-cd ~/automatic_connections
-```
-
-```
-$ ./one_automatic_connection.sh
--------------------------------
-release and connect
--------------------------------
-Can't release device: No such device
-Connected /dev/rfcomm0 to 00:06:66:71:5C:D4 on channel 1
-Press CTRL-C for hangup
-```
-
-
-
-```
-$ ls -l /dev/rfcomm*
-crw-rw---- 1 root dialout 216, 0 May 24 14:47 /dev/rfcomm0
-```
-
-```
-$ groups
-map479 adm cdrom sudo dip plugdev lpadmin sambashare
-```
-
-First you need to be in dialout group, then make sure tty is owned by this group.
-[http://answers.ros.org/question/46790/failed-to-open-port-devttyusb0/]
-To add yourself to group, the /dev/rfcomm0 device has the group of dialout.
-All you need to do is add the second USERNAME to the dialout group:
-```
-$ sudo adduser map479 dialout
-Adding user `map479' to group `dialout' ...
-Adding user map479 to group dialout
-Done.
-$ groups
-map479 adm cdrom sudo dip plugdev lpadmin sambashare
-```
-Then relog / restart X server / reboot to make sure
-
+## lsof
 
 ```
 $ sudo lsof /dev/rfcomm0
@@ -113,7 +192,7 @@ https://bugs.launchpad.net/ubuntu/+source/bluez/+bug/1014992/comments/14
 
 
 
-### creating a rule
+## creating a rule
 
 TRY:
 Writing a udev rule to ignore device by ModemManager worked for me:
@@ -188,7 +267,7 @@ sudo reboot
 ```
 
 
-# pair and unpair
+## pair and unpair
 
 After a while, I found that the rfcomm has to be connected and then disconnected
 to put it to work well. I am not enterely sure about the reason for this.
@@ -199,7 +278,6 @@ Can't release device: Operation already in progress
 Can't create RFCOMM TTY: Address already in use
 ```
 it needs to be investigated the reason and give solutions to this
-
 
 
 

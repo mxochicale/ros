@@ -3,12 +3,22 @@
 # Reference
 # https://stackoverflow.com/questions/676172/full-examples-of-using-pyserial-package
 
+# USAGE
+#
+#./testing_razor.py
+#./testing_razor.py /dev/rfcomm#
 
 
 import serial
 import sys
 
-port = '/dev/rfcomm0'
+names = []
+if len(sys.argv) < 2:
+    port = '/dev/rfcomm0'
+else:
+    port = ''.join(sys.argv[1:])
+
+# sys.argv[1:] # get everything after the script name
 
 
 # Check your COM port and baud rate
