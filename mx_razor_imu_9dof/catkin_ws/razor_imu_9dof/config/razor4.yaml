@@ -3,6 +3,10 @@
 port: /dev/rfcomm3
 rawdata_filename: s04.csv
 number_of_samples: 2000
+# 1000 samples ~ 20 seconds; 2000 samples ~ 40 seconds; 3000 samples ~ 60 seconds
+
+
+
 ##default_data_stream_path: (dont use a relative path ~/catkin_ws/src/razor_imu_9dof)
 main_data_stream_path: /home/map479/catkin_ws/src/razor_imu_9dof
 

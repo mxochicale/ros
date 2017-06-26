@@ -41,6 +41,7 @@ main_data_stream_path:~/catkin_ws/src/razor_imu_9dof
 ```
 
 1000 samples ~ 20 seconds
+2000 samples ~ 40 seconds
 3000 samples ~ 60 seconds
 
 
