@@ -13,10 +13,3 @@ Some of the following references might help
 * [synchronize nodes](http://answers.ros.org/question/71848/synchronize-nodes/)
 * [ROS camera and IMU synchronization](http://grauonline.de/wordpress/?page_id=1951)
 * [A. English et al. "TriggerSync: A Time Synchronization Tool"](https://wiki.qut.edu.au/download/attachments/147952130/TriggerSync.pdf.pdf)
-
-
-
-
-
-
-
