@@ -1,16 +1,9 @@
 ~/catkin_ws/razor_imu_9dof
 ---
 
-# ~/nodes/imu_node.py
 
-adding:
-* number_of_samples:
-* becareful with the default_data_stream_path: (dont use a relative path ~/catkin_ws/src/razor_imu_9dof)
+1. clone KristofRobot/razor_imu_9dof.git
 
-
-# roslaunch razor_imu_9dof razor-pub.launch
-
-0. clone and test before to go to 1.
 ```
 cd ~/catkin_ws/src
 git clone https://github.com/KristofRobot/razor_imu_9dof.git
@@ -18,8 +11,7 @@ cd .. && catkin_make
 ```
 
 
-
-1. update ~/catkin_ws/src/razor_imu_9dof
+2. update local ~/catkin_ws/src/razor_imu_9dof with ~/mxochicale/github/ros/mx_razor_imu_9dof/
 
 ```
 cd ~/catkin_ws/src/razor_imu_9dof
@@ -27,29 +19,25 @@ cp -r ~/mxochicale/github/ros/mx_razor_imu_9dof/catkin_ws/razor_imu_9dof/* .
 ```
 
 
-
-2. Set up ports, files, number_of_samples and paths for data
+3. Set up ports, files, number_of_samples and paths for data
 
 go to ~/catkin_ws/razor_imu_9dof/config/
-and set the following variables in my_razor.yaml and razor*.yaml
-
-```
-port:
-rawdata_filename:
-number_of_samples:
-main_data_stream_path:~/catkin_ws/src/razor_imu_9dof
-```
-
-1000 samples ~ 20 seconds
-2000 samples ~ 40 seconds
-3000 samples ~ 60 seconds
+and set, for example, the following variables in my_razor.yaml and razor*.yaml
 
 
-3. make
+port: /dev/rfcomm0  
+rawdata_filename: s01.csv  
+number_of_samples: 2000 ## 1000 samples ~ 20 seconds; 2000 samples ~ 40 seconds; 3000 samples ~ 60 seconds  
+main_data_stream_path: /home/map479/catkin_ws/src/razor_imu_9dof ## (dont use a relative path ~/catkin_ws/src/razor_imu_9dof)  
+
+
+4. make
+
 ```
 cd ~/catkin_ws/ && catkin_make
 ```
 
+output
 ```
 $ cd ~/catkin_ws/ && catkin_make
 Base path: /home/map479/catkin_ws
@@ -102,15 +90,22 @@ Wrote header file in /home/map479/catkin_ws/devel/include/razor_imu_9dof/imuConf
 
 
 # USAGE
-## razor-pub-two-imus.launch
+
+## bind pair bind bluetooth modules to rfcomm* ports
 
 ```
-roslaunch razor_imu_9dof razor-pub-two-imus.launch
+cd ~/mxochicale/github/ros/bluetooth_dev_conf/automatic_connection
+./bind_four_automatic_connection_ubuntu1604.sh
+```
+to release bluetooth modules from  the rfcomm* ports
+```
+./release_four_automatic_connection_ubuntu1604.sh
 ```
 
 
-## razor-pub-four-imus.launch
+## razor-pub-****.launch
 
+Once the bluetooth modules have been binded, you can launch the app
 
 ```
 roslaunch razor_imu_9dof razor-pub-four-imus.launch
