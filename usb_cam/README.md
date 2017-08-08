@@ -123,6 +123,7 @@ Scanning dependencies of target usb_cam_node
 
 
 4. Create your launch file
+
 cd ~/catkin_ws/src/usb_cam/launch
 touch myusbcam.launch
 
@@ -132,7 +133,7 @@ possible values for pixel_format: yuyv, uyvy, mjpeg, yuvmono10, rgb24
 ```
 <launch>
   <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
-    <param name="video_device" value="/dev/video1" />
+    <param name="video_device" value="/dev/video0" />
     <param name="image_width" value="640" />
     <param name="image_height" value="480" />
     <param name="pixel_format" value="yuyv" />
