@@ -246,7 +246,7 @@ main_data_stream_path = rospy.get_param('~main_data_stream_path', default_script
 # headtail_path = os.path.split(script_dir) # split the main path:  '/home/map479-admin/catkin_ws/src/razor_imu_9dof'    'razor'
 # datastreampath = os.path.join(headtail_path[0], 'datastream_storage') # create datastream path
 
-datastreampath = os.path.join(main_data_stream_path, 'data_path_storage') # set datastream path
+datastreampath = os.path.join(main_data_stream_path, 'razor_data_path') # set datastream path
 
 if not os.path.isdir(datastreampath):
     os.makedirs(datastreampath)
