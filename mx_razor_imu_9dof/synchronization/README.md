@@ -34,3 +34,44 @@ to collect data from two or more sensors, using remapping
 https://github.com/KristofRobot/razor_imu_9dof/issues/23#issuecomment-159525568
 in which one of the recommendations is to create a lunch file.
 However, [the querie with the synchonizations is sill remained to be answerred](https://github.com/KristofRobot/razor_imu_9dof/issues/23#issuecomment-239429701)
+
+
+
+# Solution
+
+Reading [time-synchronizer-message_filters-with-custom-message-type](https://answers.ros.org/question/197811/time-synchronizer-message_filters-with-custom-message-type/)
+
+https://answers.ros.org/question/81126/how-to-use-approximatetime-in-python/
+
+
+# Victor's help
+
+Have a look at:
+https://github.com/Room1104/SmileDetection/blob/ea98c81eea4a78fe0c9d3ffc57a8c12eab76b22c/src/smile_detect.py
+
+Documentation for TimeSynchronizer
+http://docs.ros.org/api/message_filters/html/python/#message_filters.TimeSynchronizer
+
+
+```
+import message_filters
+import ropsy
+import YOUR_IMU_DATA_TYPE
+
+# this callback function will be called
+# when message filter once sync four messages
+# do your processing here
+def callback(self, data1, data2, data3, data4):
+    pass
+
+imu1 = message_filters.Subscriber('/ns01/imu', YOUR_IMU_DATA_TYPE)
+imu2 = message_filters.Subscriber('/ns02/imu', YOUR_IMU_DATA_TYPE)
+imu3 = message_filters.Subscriber('/ns03/imu', YOUR_IMU_DATA_TYPE)
+imu4 = message_filters.Subscriber('/ns04/imu', YOUR_IMU_DATA_TYPE)
+
+
+ts = message_filters.TimeSynchronizer(imu1, imu2, imu3, imu4, 10)
+ts.registerCallback(callback)
+rospy.spin()
+
+```

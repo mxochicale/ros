@@ -1,20 +1,14 @@
 ~/catkin_ws/razor_imu_9dof
 ---
+This package is base on [KristofRobot/razor_imu_9dof.git](https://github.com/KristofRobot/razor_imu_9dof.git)
 
-
-# 1. clone KristofRobot/razor_imu_9dof.git
-
-```
-cd ~/catkin_ws/src
-git clone https://github.com/KristofRobot/razor_imu_9dof.git
-cd .. && catkin_make
-```
 
 
 # 2. update local ~/catkin_ws/src/razor_imu_9dof with ~/mxochicale/github/ros/mx_razor_imu_9dof/
 
 ```
-cd ~/catkin_ws/src/razor_imu_9dof
+cd ~/catkin_ws/src/
+mkdir razor_imu_9dof && cd razor_imu_9dof
 cp -r ~/mxochicale/github/ros/mx_razor_imu_9dof/catkin_ws/razor_imu_9dof/* .
 ```
 
@@ -104,8 +98,7 @@ Wrote header file in /home/map479/catkin_ws/devel/include/razor_imu_9dof/imuConf
 
 Turn on the razor modules and
 ```
-cd ~/mxochicale/github/ros/bluetooth_dev_conf/automatic_connection
-./bind_four_automatic_connection_ubuntu1604.sh
+cd ~/mxochicale/github/ros/bluetooth_dev_conf/automatic_connection && ./bind_four_automatic_connection_ubuntu1604.sh
 ```
 wait until all the bluetooth module led goes from flashing in red to a stable yellow
 to a blinking red color.
