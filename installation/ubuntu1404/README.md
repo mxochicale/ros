@@ -28,14 +28,17 @@ x86_64
 
 
 ```
-$ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 ```
 
 * 1.3 Set up your keys
 
 ```
-$ sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+```
 
+output
+```
 
 Executing: gpg --ignore-time-conflict --no-options --no-default-keyring --homedir /tmp/tmp.7z3kdedM4U --no-auto-check-trustdb --trust-model always --keyring /etc/apt/trusted.gpg --primary-keyring /etc/apt/trusted.gpg --keyring /etc/apt/trusted.gpg.d/desdelinux-viewnior.gpg --keyring /etc/apt/trusted.gpg.d/octave-stable.gpg --keyring /etc/apt/trusted.gpg.d/staticfloat-julia-deps.gpg --keyring /etc/apt/trusted.gpg.d/staticfloat-juliareleases.gpg --keyring /etc/apt/trusted.gpg.d/supercollider-ppa.gpg --keyring /etc/apt/trusted.gpg.d/texlive-backports-ppa.gpg --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
 gpg: requesting key B01FA116 from hkp server ha.pool.sks-keyservers.net
@@ -50,6 +53,7 @@ gpg:              unchanged: 1
 ```
 sudo apt-get update
 sudo apt-get install ros-indigo-desktop-full
+sudo apt-get install ros-indigo-desktop
 ```
 
 ```
@@ -254,3 +258,94 @@ To make sure your workspace is properly overlayed by the setup script, make sure
 ```
 echo "source ~/catkin_ws/devel/setup.bash"  >> ~/.bashrc
 ```
+
+
+
+## issues
+
+```
+$ sudo rosdep init
+Could not find platform independent libraries <prefix>
+Could not find platform dependent libraries <exec_prefix>
+Consider setting $PYTHONHOME to <prefix>[:<exec_prefix>]
+ImportError: No module named site
+```
+
+
+vim ~/.bashrc
+
+```
+export PYTHONPATH=/usr/bin/python
+export PYTHONHOME=/usr/bin/python
+```
+
+source ~/.bashrc
+
+
+Thu Sep 27 00:04:32 BST 2018
+
+
+###
+
+```
+python-catkin-pkg : Depends: python-catkin-pkg-modules (>= 0.4.8) but it is not going to be installed
+```
+
+
+```
+sudo apt-get remove --auto-remove python-catkin-pkg
+sudo apt-get purge python-catkin-pkg
+```
+
+
+http://installion.co.uk/ubuntu/xenial/universe/p/python-catkin-pkg/uninstall/index.html
+
+
+## removing ros
+
+```
+sudo apt-get remove ros-*
+sudo apt-get purge ros-*
+sudo apt-get autoremove
+```
+
+
+
+https://answers.ros.org/question/57213/how-i-completely-remove-all-ros-from-my-system/
+
+###
+
+
+
+sudo vim /etc/apt/sources.list
+
+```
+deb http://archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ trusty-security main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb http://archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse
+
+```
+
+
+```
+sudo apt-get update
+sudo apt-get install ros-indigo-desktop-full
+sudo apt-get install ros-indigo-desktop
+```
+
+
+```
+$ sudo apt-get install ros-indigo-desktop
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+You might want to run 'apt-get -f install' to correct these:
+The following packages have unmet dependencies.
+ python-catkin-pkg : Depends: python-catkin-pkg-modules (>= 0.4.8) but it is not going to be installed
+E: Unmet dependencies. Try 'apt-get -f install' with no packages (or specify a solution).
+map479-admin@EEE-003124:~$ 
+```
+
+
