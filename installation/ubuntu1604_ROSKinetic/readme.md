@@ -9,6 +9,7 @@ Ubuntu install of ROS Kinetic on Ubuntu 16.04 on Desktop Machine
 
 # INSTALLATION
 
+
 ```
 sh install_ros.sh
 ```
@@ -19,10 +20,24 @@ Create a ROS Workspace
 
 ```
 mkdir -p ~/catkin_ws/src
-cd ~/catkin_ws
-catkin_make
+cd ~/catkin_ws && catkin_make
 ```
 
+```
+echo $ROS_PACKAGE_PATH
+```
+
+
+
+
+# REMOVE
+
+```
+sudo apt-get purge ros-*
+sudo apt-get autoremove
+cd /etc/ros/rosdep/sources.list.d 
+sudo rm 20-default.list
+```
 
 
 

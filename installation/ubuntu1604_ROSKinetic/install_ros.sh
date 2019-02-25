@@ -21,6 +21,9 @@ sudo apt-get install ros-$ROS_DISTRO-rqt* #rqt is a Qt-based framework for GUI d
 sudo rosdep init
 rosdep update
 
+
+echo "##ROS" >> ~/.bashrc
 echo "source /opt/ros/"$ROS_DISTRO"/setup.bash" >> ~/.bashrc
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 
