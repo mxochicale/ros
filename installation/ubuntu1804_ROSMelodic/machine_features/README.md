@@ -1,11 +1,8 @@
-Machine Features
----
+# Machine Features
 
-
-
-
+## machine-a
 ```
-$ ./machineinfo.sh 
+$ sh machineinfo.sh 
 ```
 
 output

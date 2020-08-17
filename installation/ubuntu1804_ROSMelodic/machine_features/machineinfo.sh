@@ -1,8 +1,8 @@
-
-# http://rescience.github.io/platform/
- 
 clear
 
+echo '#################################################################'
+echo '## Date and time'
+date
 
 echo '#################################################################'
 echo '## Ubuntu Version: $lsb_release -a'
