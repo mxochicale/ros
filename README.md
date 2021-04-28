@@ -10,3 +10,7 @@ git clone git@github.com:mxochicale/ros.git
 ## References
 * [discourse](https://discourse.ros.org/)
 * [answers](http://answers.ros.org/questions/)
+
+## Contact 
+If you have specific questions about the content of this repository, you can contact [Miguel Xochicale](mailto:perez.xochicale@gmail.com?subject="[ros]"). 
+If your question might be relevant to other people, please instead [open an issue](https://github.com/mxochicale/ros/issues).
