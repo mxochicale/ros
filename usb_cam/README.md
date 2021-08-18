@@ -1,16 +1,13 @@
-usb_cam
----
-
-[tutorial](http://ros-robotics.blogspot.co.uk/2015/06/webcam-on-ros.html)
-[usb_cam](https://github.com/ros-drivers/usb_cam)
-
-[WebCams Resolutions](http://ros-robotics.blogspot.co.uk/2015/06/the-best-webcam-on-ros-indigo.html)
+# usb_cam
 
 
 
-# HARDWARE
+## HARDWARE
 
+1. Install utils
+```
 sudo apt-get install v4l-utils
+```
 
 $ v4l2-ctl --all
 ```
@@ -66,25 +63,21 @@ Streaming Parameters Video Capture:
 ```
 
 
-
-
-
-# INSTALLATION
-
-
-
-
+## INSTALLATION
 
 1.
 ```
-$ cd ~/catkin_ws/src/
+cd ~/catkin_ws/src/
 git clone https://github.com/ros-drivers/usb_cam
 ```
 
 2.
  then run catkin_make from the catkin workspace root folder.
 ```
-cd .. && catkin_make
+cd .. 
+rm -rf build devel install
+cd ~/catkin_ws && catkin_make
+rospack profile #https://stackoverflow.com/questions/27053334/ros-package-not-found-after-catkin-make
 ```
 
 
@@ -120,33 +113,15 @@ Scanning dependencies of target usb_cam_node
  source ~/.bashrc
  ```
 
+## Usage
 
+### launch files 
 
-4. Create your launch file
+4. Add myusbcam.launch 
 
-cd ~/catkin_ws/src/usb_cam/launch
-touch myusbcam.launch
-
-and paste  
-
-possible values for pixel_format: yuyv, uyvy, mjpeg, yuvmono10, rgb24
 ```
-<launch>
-  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
-    <param name="video_device" value="/dev/video0" />
-    <param name="image_width" value="640" />
-    <param name="image_height" value="480" />
-    <param name="pixel_format" value="yuyv" />
-    <param name="camera_frame_id" value="usb_cam" />
-    <param name="io_method" value="mmap"/>
-  </node>
-  <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
-    <remap from="image" to="/usb_cam/image_raw"/>
-    <param name="autosize" value="true" />
-  </node>
-</launch>
+bash copy-launchs-to-catkin_ws.bash
 ```
-
 
 5. launch and test
 ```
@@ -209,7 +184,7 @@ or default launch
 roslaunch usb_cam usb_cam-test.launch
 ```
 
-###  roscore
+### with roscore
 
 terminal 1
 ```
@@ -233,9 +208,16 @@ rostopic echo /usb_cam/image_raw/theora
 ```
 
 ### rebuilding usb_cam_node
-L103 >> node_.param("pixel_format", pixel_format_name_, std::string("yuyv"));
+L103 >> `node_.param("pixel_format", pixel_format_name_, std::string("yuyv"));` 
 
 ```
 cd ~/catkin_ws/
 catkin_make
 ```
+
+## Referemces 
+* [tutorial](http://ros-robotics.blogspot.co.uk/2015/06/webcam-on-ros.html)
+* [usb_cam](https://github.com/ros-drivers/usb_cam) 
+* [WebCams Resolutions](http://ros-robotics.blogspot.co.uk/2015/06/the-best-webcam-on-ros-indigo.html)
+
+
